@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Server.Interaction;
 using Content.Server.Language;
@@ -7,20 +8,18 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Radio.Components;
 using Content.Server.Speech;
 using Content.Server.Speech.Components;
-using Content.Shared._NC.Radio; // Nuclear-14
-using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Power;
 using Content.Shared.Radio;
+using Content.Shared.Chat;
 using Content.Shared.Radio.Components;
 using Content.Shared.UserInterface; // Nuclear-14
+using Content.Shared._NC.Radio; // Nuclear-14
 using Robust.Server.GameObjects;
 using Robust.Shared.Network;
 using Robust.Shared.Player; // Nuclear-14
 using Robust.Shared.Prototypes;
-using System.Linq;
-using System.Xml.Linq;
 
 namespace Content.Server.Radio.EntitySystems;
 
