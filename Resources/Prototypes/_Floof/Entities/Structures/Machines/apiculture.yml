@@ -47,3 +47,6 @@
   # - type: UpgradePowerDraw
   #   powerDrawMultiplier: 0.75
   #   scaling: Exponential
+
+# TODO:
+# - Powered Apiary

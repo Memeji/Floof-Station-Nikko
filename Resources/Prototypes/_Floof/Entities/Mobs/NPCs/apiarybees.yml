@@ -1,10 +1,16 @@
-# - type: entity
-#   name: busy bee
-#   parent: [ SimpleMobBase, FlyingMobBase ]
-#   id: MobApiaryBee
-#   description: Nice to have, but you can't build a civilization on a foundation of honey alone.
-#   components:
-#   - type: CombatMode
+# TODO:
+# - Normal Apiary Bee
+# - 
+#
+
+ - type: entity
+   name: bee
+   parent: [ SimpleMobBase, FlyingMobBase ]
+   id: MobApiaryBee
+   description: Nice to have, but you can't build a civilization on a foundation of honey alone.
+   components:
+   - type: CombatMode
+   - type: ApiaryBee
 #   - type: MovementSpeedModifier # Based on modifiers
 #     baseWalkSpeed : 7
 #     baseSprintSpeed : 7
