@@ -6,6 +6,8 @@ using Content.Shared.VendingMachines;
 using Robust.Shared.Containers;
 using System;
 using System.Numerics;
+using Content.Shared.FloofStation.Bees;
+using Robust.Server.GameObjects;
 
 
 namespace Content.Server._Floof.Bees;
@@ -14,28 +16,39 @@ namespace Content.Server._Floof.Bees;
 public sealed class ApiarySystem : EntitySystem
 {
     private ISawmill _sawmill = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
     public override void Initialize()
     {
         base.Initialize();
-        _sawmill = IoCManager.Resolve<ILogManager>().GetSawmill("BEEE");
+        _sawmill = IoCManager.Resolve<ILogManager>().GetSawmill("Apiary");
+
         SubscribeLocalEvent<ApiaryComponent, ComponentStartup>(SubscribeUpdateUiState);
         SubscribeLocalEvent<ApiaryComponent, EntInsertedIntoContainerMessage>(SubscribeUpdateUiState);
         SubscribeLocalEvent<ApiaryComponent, EntRemovedFromContainerMessage>(SubscribeUpdateUiState);
         SubscribeLocalEvent<ApiaryComponent, BoundUIOpenedEvent>(SubscribeUpdateUiState);
         SubscribeLocalEvent<ApiaryComponent, BeeMessage>(OnBeeMessage);
-
     }
 
-    public void SubscribeUpdateUiState<T>(Entity<ApiaryComponent> ent, ref T ev)
-    {
-    }
+    public void SubscribeUpdateUiState<T>(Entity<ApiaryComponent> ent, ref T ev) { }
 
     public void OnBeeMessage<BeeMessage>(Entity<ApiaryComponent> ent, ref BeeMessage msg)
     {
         _sawmill.Log(LogLevel.Info, "buzz");
 
         TryCreateBee(ent);
+        MakeProgress(ent);
+    }
 
+    public void MakeProgress(Entity<ApiaryComponent> ent)
+    {
+        ent.Comp.Progress += 1;
+        if (ent.Comp.Progress >= ent.Comp.MaxProgress)
+        {
+            Spawn(ent.Comp.ProgressResult, Transform(ent).Coordinates);
+            ent.Comp.Progress = 0;
+        }
+        var state = new ApiaryUserInterfaceState((float)ent.Comp.Progress / ent.Comp.MaxProgress);
+        _ui.SetUiState(ent.Owner, SharedApiaryComponent.ApiaryUiKey.Key, state);
     }
 
     public void TryCreateBee(EntityUid uid, ApiaryComponent? apiComponent = null)

@@ -10,21 +10,16 @@
 
          <BoxContainer Orientation="Vertical">
              <Label Name="ProgressLabel"></Label>
-             <ProgressBar
-                 Name="ProgressBar"
-                 Value="0.5"
-                 MinValue="0"
-                 MaxValue="1"
-                 SetHeight="20">
+             <ProgressBar Name="FuelBar"
+                          HorizontalExpand="True"
+                          MaxValue="1"
+                          MinValue="0"
+                          Value="0.2"
+                          SetHeight="25"
+                          Margin="10 0 10 0"
+                          VerticalAlignment="Center">
+                 <Label Name="TotalProgressLabel"></Label>
              </ProgressBar>
-             <Label Name="TotalProgressLabel"></Label>
-             <ProgressBar
-                 Name="TotalProgressBar"
-                 MinValue="0"
-                 MaxValue="1"
-                 SetHeight="20">
-             </ProgressBar>
-
              <Button Name="BeeButton"
                 Text="TEST"
                 StyleClasses="ButtonBig"/>

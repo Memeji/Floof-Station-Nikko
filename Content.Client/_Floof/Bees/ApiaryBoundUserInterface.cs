@@ -32,5 +32,13 @@ namespace Content.Client._Floof.Bees
         {
             SendMessage(new BeeMessage());
         }
+        protected override void UpdateState(BoundUserInterfaceState state)
+        {
+            base.UpdateState(state);
+
+            if (state is not ApiaryUserInterfaceState msg)
+                return;
+            _window?.UpdateState(msg);
+        }
     }
 }
