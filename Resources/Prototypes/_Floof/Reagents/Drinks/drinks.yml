@@ -58,6 +58,7 @@
         key: Stutter
         component: StutteringAccent
       - !type:Jitter
+      - !type:GenericStatusEffect
         key: Drowsiness
         time: 10
         type: Remove
