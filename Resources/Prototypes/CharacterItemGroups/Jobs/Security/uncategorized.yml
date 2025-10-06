@@ -137,7 +137,7 @@
       id: LoadoutSecurityDisablerSMG
     - type: loadout # Floofstation - Wardens need a little love
       id: LoadoutSecurityWeaponEnergyShotgun
-    - type: loadout
+    - type: loadout # Floofstation - BSO Energy Revolver
       id: LoadoutSecurityEnergyRevolver
 
 - type: characterItemGroup
